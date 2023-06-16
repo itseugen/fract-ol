@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/16 10:47:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:45:48 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ static int	close_keys(int keycode)
 	/*ESC*/
 	if (keycode == 53)
 		close_window();
+	// if (keycode == 53)
+	// 	g_zoom += 0.1;
+	// if (keycode == 53)
+	// 	g_zoom -= 0.1;
 	return (0);
 }
 
