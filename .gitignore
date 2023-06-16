@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 # Own Additions
-fract-ol
+fractol
 libft
