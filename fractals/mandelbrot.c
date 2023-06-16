@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/16 16:16:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:23:09 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	getiteration(double real, double imag, int maxiter, double maxval)
 	return (iter);
 }
 
-static uint32_t	getcolor(int iterations, int maxIterations)
+static uint32_t getcolor(int iterations, int maxIterations)
 {
 	if (iterations == maxIterations)
 		return 0x000000;  // Black
@@ -74,12 +74,13 @@ static uint32_t	getcolor(int iterations, int maxIterations)
 		// Map the iteration count to a color gradient
 		double t = (double)iterations / maxIterations;
 		// Define color gradients in hexadecimal values
-		uint32_t color1 = 0x0000FF;  // Start color (black)
-		uint32_t color2 = 0xFF0000;  // End color
-        // Interpolate between color1 and color2 based on t
-		uint8_t red = (uint8_t)((1 - t) * ((color1 >> 16) & 0xFF) + t * ((color2 >> 16) & 0xFF));
+		uint32_t color1 = 0x000000;  // Start color (black)
+		uint32_t color2 = 0xFFA100;  // End color
+		// Interpolate between color1 and color2 based on t
+		uint8_t blue = (uint8_t)((1 - t) * ((color1 >> 16) & 0xFF) + t * ((color2 >> 16) & 0xFF));
 		uint8_t green = (uint8_t)((1 - t) * ((color1 >> 8) & 0xFF) + t * ((color2 >> 8) & 0xFF));
-		uint8_t blue = (uint8_t)((1 - t) * (color1 & 0xFF) + t * (color2 & 0xFF));
-		return ((red << 16) | (green << 8) | blue);
+		uint8_t red = (uint8_t)((1 - t) * (color1 & 0xFF) + t * (color2 & 0xFF));
+		return ((blue << 24) | (green << 16) | (red << 8) | 0xFF);
 	}
 }
+
