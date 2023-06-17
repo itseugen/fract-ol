@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/16 16:23:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:01:44 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	getiteration(double real, double imag, int maxiter, double maxval);
 static uint32_t	getcolor(int iterations, int maxIterations);
 
 /// Later add a typedef with xmin x max and so on or a define
-void	mandelbrot(t_window window)
+void	mandelbrot(t_window window, t_zoom zoom)
 {
-	double	xmin = -2.5;
-	double	xmax = 1;
-	double	ymin = -1;
-	double	ymax = 1;
+	double	xmin = -2.5 / zoom.zoom;
+	double	xmax = 1 / zoom.zoom;
+	double	ymin = -1 / zoom.zoom;
+	double	ymax = 1 / zoom.zoom;
 	int		x = 0;
 	int		y = 0;
 	int		pxlval;
@@ -29,8 +29,8 @@ void	mandelbrot(t_window window)
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(xmin + (x * (xmax - xmin) / WIDTH),
-				ymin + (y * (ymax - ymin) / HEIGHT), 10, 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 10));
+				ymin + (y * (ymax - ymin) / HEIGHT), 20, 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 20));
 		x++;
 		if (x == WIDTH)
 		{
@@ -65,21 +65,26 @@ static int	getiteration(double real, double imag, int maxiter, double maxval)
 	return (iter);
 }
 
-static uint32_t getcolor(int iterations, int maxIterations)
+static uint32_t	getcolor(int iterations, int maxIterations)
 {
+	double	itergrad;
+	uint8_t	blue;
+	uint8_t	green;
+	uint8_t	red;
+
 	if (iterations == maxIterations)
-		return 0x000000;  // Black
+		return (0x000000);
 	else
 	{
 		// Map the iteration count to a color gradient
-		double t = (double)iterations / maxIterations;
+		itergrad = (double)iterations / maxIterations;
 		// Define color gradients in hexadecimal values
 		uint32_t color1 = 0x000000;  // Start color (black)
 		uint32_t color2 = 0xFFA100;  // End color
 		// Interpolate between color1 and color2 based on t
-		uint8_t blue = (uint8_t)((1 - t) * ((color1 >> 16) & 0xFF) + t * ((color2 >> 16) & 0xFF));
-		uint8_t green = (uint8_t)((1 - t) * ((color1 >> 8) & 0xFF) + t * ((color2 >> 8) & 0xFF));
-		uint8_t red = (uint8_t)((1 - t) * (color1 & 0xFF) + t * (color2 & 0xFF));
+		blue = (uint8_t)((1 - itergrad) * ((color1 >> 16) & 0xFF) + itergrad * ((color2 >> 16) & 0xFF));
+		green = (uint8_t)((1 - itergrad) * ((color1 >> 8) & 0xFF) + itergrad * ((color2 >> 8) & 0xFF));
+		red = (uint8_t)((1 - itergrad) * (color1 & 0xFF) + itergrad * (color2 & 0xFF));
 		return ((blue << 24) | (green << 16) | (red << 8) | 0xFF);
 	}
 }

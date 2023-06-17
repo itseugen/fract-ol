@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/16 15:57:23 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:08:50 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 int	main(int argc, char *argv[])
 {
-	t_window	window;
+	// t_window	window;
+	// t_zoom		zoom;
+	t_fractol	fractol;
 	/*Void for now, add handeling later*/
 	(void)argc;
 	(void)argv;
-	window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
-	if (window.mlx == NULL)
+	fractol.zoom.zoom = 1;
+	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
+	if (fractol.window.mlx == NULL)
 		exit (1);
-	window.img = mlx_new_image(window.mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(window.mlx, window.img, 0, 0);
-	//window.win = mlx_new_window(window.mlx, WIDTH, HEIGHT, "fract-ol");
-	hooks(window);
+	fractol.window.img = mlx_new_image(fractol.window.mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(fractol.window.mlx, fractol.window.img, 0, 0);
+	hooks(&fractol);
 	/*temp*/
-	mandelbrot(window);
-	mlx_loop(window.mlx);
+	mandelbrot(fractol.window, fractol.zoom);
+	mlx_loop(fractol.window.mlx);
 	return (0);
 }
