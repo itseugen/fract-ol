@@ -6,22 +6,22 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/17 18:01:44 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:09:22 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int	getiteration(double real, double imag, int maxiter, double maxval);
+static int		getiteration(double real, double imag, int maxiter, double maxval);
 static uint32_t	getcolor(int iterations, int maxIterations);
 
 /// Later add a typedef with xmin x max and so on or a define
-void	mandelbrot(t_window window, t_zoom zoom)
+void	mandelbrot(t_window window, t_params params)
 {
-	double	xmin = -2.5 / zoom.zoom;
-	double	xmax = 1 / zoom.zoom;
-	double	ymin = -1 / zoom.zoom;
-	double	ymax = 1 / zoom.zoom;
+	double	xmin = -2.5 / params.zoom;
+	double	xmax = 1 / params.zoom;
+	double	ymin = -1 / params.zoom;
+	double	ymax = 1 / params.zoom;
 	int		x = 0;
 	int		y = 0;
 	int		pxlval;
@@ -29,8 +29,8 @@ void	mandelbrot(t_window window, t_zoom zoom)
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(xmin + (x * (xmax - xmin) / WIDTH),
-				ymin + (y * (ymax - ymin) / HEIGHT), 20, 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 20));
+				ymin + (y * (ymax - ymin) / HEIGHT), 100, 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100));
 		x++;
 		if (x == WIDTH)
 		{
@@ -88,4 +88,3 @@ static uint32_t	getcolor(int iterations, int maxIterations)
 		return ((blue << 24) | (green << 16) | (red << 8) | 0xFF);
 	}
 }
-

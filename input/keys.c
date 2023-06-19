@@ -6,11 +6,12 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/17 18:37:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:14:30 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
+#include <stdio.h>
 
 static int	close_window(void *param);
 static int	close_keys(int keycode, void *param);
@@ -42,25 +43,26 @@ static int	close_window(void *param)
 
 	/*Add frees if needed*/
 	window = (t_window *)param;
+	mlx_delete_image(window->mlx, window->img);
+	mlx_close_window(window->mlx);
 	mlx_terminate(window->mlx);
 	exit(0);
 }
 
 static void	zoomdetec(double xdelta, double ydelta, void *param)
 {
-	t_zoom		*zoom;
-	t_window	*window;
+	t_params		*params;
+	t_window		*window;
 
-	window = (t_window *)param;
-	zoom = (t_zoom *)param;
+	window = &((t_fractol *)param)->window;
+	params = &((t_fractol *)param)->params;
 	(void)xdelta;
 	if (ydelta > 0)
-		zoom->zoom = zoom->zoom + 0.1;
+		params->zoom = params->zoom + 0.05;
 	else if (ydelta < 0)
-		zoom->zoom = zoom->zoom - 0.1;
-	mlx_image_t *new_img = mlx_new_image(window->mlx, WIDTH, HEIGHT);
-	window->img = new_img;
-	mandelbrot(*window, *zoom);
-	mlx_image_to_window(window->mlx, window->img, 0, 0);
-	window->img->instances[0].z += 1;
+		params->zoom = params->zoom - 0.05;
+	//mlx_image_t *new_img = mlx_new_image(window->mlx, WIDTH, HEIGHT);
+	printf("Current Zoom value: %f\n", params->zoom);
+	//window->img = new_img;
+	mandelbrot(*window, *params);
 }
