@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 15:38:06 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:33:56 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	main(int argc, char *argv[])
 	/*Void for now, add handeling later*/
 	(void)argc;
 	(void)argv;
+	/*Change to handle user inputs later*/
+	fractol.params.xmin = -2.5;
+	fractol.params.xmax = 1;
+	fractol.params.ymin = -1;
+	fractol.params.ymax = 1;
 	fractol.params.zoom = 1;
 	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (fractol.window.mlx == NULL)

@@ -6,14 +6,14 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/06/19 14:13:46 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/06/19 17:07:57 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 USER = eweiberl
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c input/keys.c
@@ -32,6 +32,9 @@ all: $(NAME)
 
 $(NAME): $(SOURCE) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(SOURCE) $(LIBFT) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) ./mlx/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+
+nflag: $(SOURCE) $(LIBFT)
+	$(CC) -o $(NAME) $(SOURCE) $(LIBFT) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) ./mlx/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 
 $(LIBFT):
 	git clone $(LIBFT_GIT) $(LIBFT_DIR); make -C $(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 14:09:22 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:30:29 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ static uint32_t	getcolor(int iterations, int maxIterations);
 /// Later add a typedef with xmin x max and so on or a define
 void	mandelbrot(t_window window, t_params params)
 {
-	double	xmin = -2.5 / params.zoom;
-	double	xmax = 1 / params.zoom;
-	double	ymin = -1 / params.zoom;
-	double	ymax = 1 / params.zoom;
 	int		x = 0;
 	int		y = 0;
 	int		pxlval;
 
+	params.xmin = params.xmin / params.zoom;
+	params.xmax = params.xmax / params.zoom;
+	params.ymin = params.ymin / params.zoom;
+	params.ymax = params.ymax / params.zoom;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(xmin + (x * (xmax - xmin) / WIDTH),
-				ymin + (y * (ymax - ymin) / HEIGHT), 100, 2.0);
+		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 100, 2.0);
 		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100));
 		x++;
 		if (x == WIDTH)

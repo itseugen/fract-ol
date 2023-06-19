@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 14:09:46 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:58:51 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ typedef struct s_params
 	int		current_x;
 	int		current_y;
 	double	zoom;
+	double	old_zoom;
+	double	xmin;
+	double	xmax;
+	double	ymin;
+	double	ymax;
 }	t_params;
 
 typedef struct s_fractol
