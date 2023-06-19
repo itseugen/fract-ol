@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/17 17:09:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:09:46 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ typedef struct s_window
 	mlx_image_t	*img;
 }	t_window;
 
-typedef struct s_zoom
+typedef struct s_params
 {
 	int		current_x;
 	int		current_y;
 	double	zoom;
-}	t_zoom;
+}	t_params;
 
 typedef struct s_fractol
 {
-	t_window	window;
-	t_zoom		zoom;
+	t_window		window;
+	t_params		params;
 }	t_fractol;
 
 /* ************************************************************************** */
@@ -70,6 +70,7 @@ void	hooks(t_fractol *fractol);
 /*                                 fractal sets                               */
 /* ************************************************************************** */
 
-void	mandelbrot(t_window window, t_zoom zoom);
+void	mandelbrot(t_window window, t_params zoom);
+void	julia(t_window window, t_params params);
 
 #endif

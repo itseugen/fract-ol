@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/17 17:08:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:41:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	/*Void for now, add handeling later*/
 	(void)argc;
 	(void)argv;
-	fractol.zoom.zoom = 1;
+	fractol.params.zoom = 1;
 	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (fractol.window.mlx == NULL)
 		exit (1);
@@ -28,7 +28,8 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(fractol.window.mlx, fractol.window.img, 0, 0);
 	hooks(&fractol);
 	/*temp*/
-	mandelbrot(fractol.window, fractol.zoom);
+	mandelbrot(fractol.window, fractol.params);
+	//julia(fractol.window, fractol.params);
 	mlx_loop(fractol.window.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/06/17 18:01:40 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/06/19 14:13:46 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c input/keys.c
-SOURCE += fractals/mandelbrot.c
+SOURCE += fractals/mandelbrot.c fractals/julia.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
