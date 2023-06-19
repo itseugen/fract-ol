@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 15:14:30 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:25:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	hooks(t_fractol *fractol)
 /// @param keycode the key pressed
 static int	close_keys(int keycode, void *param)
 {
-	if (keycode == 256)
+	if (keycode == MLX_KEY_ESCAPE)
 		close_window(param);
 	return (0);
 }
