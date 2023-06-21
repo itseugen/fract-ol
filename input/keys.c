@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 17:35:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:29:32 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,29 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	else if (ydelta < 0)
 		params->zoom = params->zoom - 0.05;
 	mlx_get_mouse_pos(window->mlx, &x, &y);
-	if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
-		zoom_on_cursor(params, window, x, y);
+	// if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
+	// 	zoom_on_cursor(params, window, x, y);
 	printf("Current Zoom value: %f\n", params->zoom);
-	mandelbrot(*window, *params);
+	mandelbrot3(*window, *params);
 }
 /*
 void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 */
 
-static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
-{
-	double	zoom_ratio;
-	double	diff_width;
-	double	diff_height;
-	double desiredwidth = WIDTH / params->zoom;
-	double desiredheight = HEIGHT / params->zoom;
+// static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
+// {
+// 	double	zoom_ratio;
+// 	double	diff_width;
+// 	double	diff_height;
+// 	double desiredwidth = WIDTH / params->zoom;
+// 	double desiredheight = HEIGHT / params->zoom;
 
-	(void)window;
-	zoom_ratio = params->zoom / params->old_zoom;
-	diff_width = WIDTH / zoom_ratio - WIDTH;
-	diff_height = HEIGHT / zoom_ratio - HEIGHT;
-	params->xmin = params->xmin - (desiredwidth / 2.0);
-	params->xmax = params->xmax + (desiredwidth / 2.0);
-	params->ymin = params->ymin - (desiredheight / 2.0);
-	params->ymax = params->ymax + (desiredheight / 2.0);
-}
+// 	(void)window;
+// 	zoom_ratio = params->zoom / params->old_zoom;
+// 	diff_width = WIDTH / zoom_ratio - WIDTH;
+// 	diff_height = HEIGHT / zoom_ratio - HEIGHT;
+// 	params->xmin = params->xmin - (desiredwidth / 2.0);
+// 	params->xmax = params->xmax + (desiredwidth / 2.0);
+// 	params->ymin = params->ymin - (desiredheight / 2.0);
+// 	params->ymax = params->ymax + (desiredheight / 2.0);
+// }

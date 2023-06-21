@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 17:33:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:29:10 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(fractol.window.mlx, fractol.window.img, 0, 0);
 	hooks(&fractol);
 	/*temp*/
-	mandelbrot(fractol.window, fractol.params);
+	mandelbrot3(fractol.window, fractol.params);
 	//julia(fractol.window, fractol.params);
 	mlx_loop(fractol.window.mlx);
 	return (0);

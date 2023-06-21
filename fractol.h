@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/19 16:58:51 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:29:21 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ void	hooks(t_fractol *fractol);
 
 void	mandelbrot(t_window window, t_params zoom);
 void	julia(t_window window, t_params params);
+
+void	mandelbrot_test(t_window window, t_params params);
+void	mandelbrot3(t_window window, t_params params);
 
 #endif
