@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/21 16:29:32 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:45:19 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	// if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
 	// 	zoom_on_cursor(params, window, x, y);
 	printf("Current Zoom value: %f\n", params->zoom);
+	printf("Mouse Position: (%d, %d)\n", x, y);
 	mandelbrot3(*window, *params);
 }
 /*
