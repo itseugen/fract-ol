@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/21 16:29:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:29:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,23 @@ typedef struct s_fractol
 /*                                 key Handeling                              */
 /* ************************************************************************** */
 
-void	hooks(t_fractol *fractol);
+void		hooks(t_fractol *fractol);
 
 /* ************************************************************************** */
 /*                                 fractal sets                               */
 /* ************************************************************************** */
 
-void	mandelbrot(t_window window, t_params zoom);
-void	julia(t_window window, t_params params);
+void		mandelbrot(t_window window, t_params zoom);
+void		julia(t_window window, t_params params);
 
-void	mandelbrot_test(t_window window, t_params params);
-void	mandelbrot3(t_window window, t_params params);
+void		mandelbrot_test(t_window window, t_params params);
+void		mandelbrot3(t_window window, t_params params);
+
+/* ************************************************************************** */
+/*                                 colouring                                  */
+/* ************************************************************************** */
+
+uint32_t	intergrad(int iterations, int max_iterations);
+uint32_t	getcolor(int iterations, int max_iterations, t_params params);
 
 #endif

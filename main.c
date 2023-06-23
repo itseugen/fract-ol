@@ -6,12 +6,19 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:45:14 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:10:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*
+* Values for 16:9
+*	fractol.params.xmin = -2.5;
+*	fractol.params.xmax = 1;
+*	fractol.params.ymin = -1;
+*	fractol.params.ymax = 1;
+*/
 int	main(int argc, char *argv[])
 {
 	// t_window	window;
@@ -21,11 +28,11 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	/*Change to handle user inputs later*/
-	fractol.params.xmin = -2.5;
-	fractol.params.xmax = 1;
-	fractol.params.ymin = -1;
-	fractol.params.ymax = 1;
-	fractol.params.zoom = 1;
+	fractol.params.xmin = -2;
+	fractol.params.xmax = 2;
+	fractol.params.ymin = -2;
+	fractol.params.ymax = 2;
+	fractol.params.zoom = 0;
 	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (fractol.window.mlx == NULL)
 		exit (1);
@@ -33,7 +40,7 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(fractol.window.mlx, fractol.window.img, 0, 0);
 	hooks(&fractol);
 	/*temp*/
-	mandelbrot3(fractol.window, fractol.params);
+	mandelbrot(fractol.window, fractol.params);
 	//julia(fractol.window, fractol.params);
 	mlx_loop(fractol.window.mlx);
 	return (0);
