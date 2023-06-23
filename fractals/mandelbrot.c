@@ -6,14 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/22 14:36:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:17:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
 static int		getiteration(double real, double imag, int maxiter, double maxval);
-static uint32_t	getcolor(int iterations, int maxIterations);
 
 /// Later add a typedef with xmin x max and so on or a define
 void	mandelbrot(t_window window, t_params params)
@@ -29,8 +28,8 @@ void	mandelbrot(t_window window, t_params params)
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
-				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 100, 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100));
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 100 * (params.zoom * params.zoom), 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100 * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
@@ -65,26 +64,34 @@ static int	getiteration(double real, double imag, int maxiter, double maxval)
 	return (iter);
 }
 
-static uint32_t	getcolor(int iterations, int maxIterations)
-{
-	double	itergrad;
-	uint8_t	blue;
-	uint8_t	green;
-	uint8_t	red;
+/*
+It all boils down to the following:
 
-	if (iterations == maxIterations)
-		return (0x000000);
-	else
-	{
-		// Map the iteration count to a color gradient
-		itergrad = (double)iterations / maxIterations;
-		// Define color gradients in hexadecimal values
-		uint32_t color1 = 0x000000;  // Start color (black)
-		uint32_t color2 = 0xFFA100;  // End color
-		// Interpolate between color1 and color2 based on t
-		blue = (uint8_t)((1 - itergrad) * ((color1 >> 16) & 0xFF) + itergrad * ((color2 >> 16) & 0xFF));
-		green = (uint8_t)((1 - itergrad) * ((color1 >> 8) & 0xFF) + itergrad * ((color2 >> 8) & 0xFF));
-		red = (uint8_t)((1 - itergrad) * (color1 & 0xFF) + itergrad * (color2 & 0xFF));
-		return ((blue << 24) | (green << 16) | (red << 8) | 0xFF);
-	}
-}
+0. Select the point in the bottom left corner of the region (-2,-2)
+
+1. Start with zx=0 and zy=0
+
+2. Calculate:
+
+        xt=zx*zy
+        zx=zx*zx-zy*zy+cx
+        zy=2*xt+cy
+
+        These calculations are really the formula zn=z2n+1. The reason they look different is because i2=-1, a property of complex numbers.
+
+3. Repeat step 2 if:
+
+a. you haven't reached 255 iterations yet [i<255]
+AND
+b. the absolute value of the result is lower than 4 [zx*zx+zy*zy)<4]
+
+4. change the color of the point you're calculating (ie. cx,cy) to the color corresponding to the number of iterations (the number of times you repeated steps 2 and 3)
+
+        We set Red, Green and Blue values of the color of the square to the number of iterations, which generates a greyscale picture.
+
+5. Select the next point (go by columns and rows)
+
+6. Go to step 1, until you reach the bottom right corner
+
+Here's the actual code:
+*/
