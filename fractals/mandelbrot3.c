@@ -6,14 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/22 15:52:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:44:00 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
 static int		getiteration(double real, double imag, int maxiter, double maxval);
-static uint32_t	getcolor(int iterations, int maxIterations);
 
 /// Later add a typedef with xmin x max and so on or a define
 void	mandelbrot3(t_window window, t_params params)
@@ -34,7 +33,7 @@ void	mandelbrot3(t_window window, t_params params)
             double real = ((x * step_x) - (WIDTH / 2));
             double imag = ((y * step_y) - (HEIGHT / 2));
             int pxlval = getiteration(real, imag, 100, 2.0);
-            mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100));
+            mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100, params));
         }
     }
 }
@@ -63,17 +62,3 @@ static int	getiteration(double real, double imag, int maxiter, double maxval)
 	}
 	return (iter);
 }
-
-static uint32_t getcolor(int iterations, int maxIterations)
-{
-    if (iterations == maxIterations)
-        return 0x000000;  // Black
-
-    double t = (double)iterations / maxIterations;
-    uint8_t blue = (uint8_t)(9 * (1 - t) * t * t * t * 255);
-    uint8_t green = (uint8_t)(15 * (1 - t) * (1 - t) * t * t * 255);
-    uint8_t red = (uint8_t)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-
-    return (blue << 16) | (green << 8) | red;
-}
-
