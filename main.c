@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 17:13:38 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:45:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,13 @@
 */
 
 static int	select_set(t_fractol fractol, int argc, char *argv[]);
+static void	init_vals(t_fractol *fractol, int argc, char *argv[]);
 
 int	main(int argc, char *argv[])
 {
-	// t_window	window;
-	// t_zoom		zoom;
 	t_fractol	fractol;
-	/*Change to handle user inputs later*/
-	fractol.params.xmin = -2;
-	fractol.params.xmax = 2;
-	fractol.params.ymin = -2;
-	fractol.params.ymax = 2;
-	fractol.params.zoom = 1;
+
+	init_vals(&fractol, argc, argv);
 	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (fractol.window.mlx == NULL)
 		exit (1);
@@ -42,6 +37,15 @@ int	main(int argc, char *argv[])
 	select_set(fractol, argc, argv);
 	mlx_loop(fractol.window.mlx);
 	return (0);
+}
+
+static void	init_vals(t_fractol *fractol, int argc, char *argv[])
+{
+	fractol->params.xmin = -2;
+	fractol->params.xmax = 2;
+	fractol->params.ymin = -2;
+	fractol->params.ymax = 2;
+	fractol->params.zoom = 1;
 }
 
 static int	select_set(t_fractol fractol, int argc, char *argv[])
