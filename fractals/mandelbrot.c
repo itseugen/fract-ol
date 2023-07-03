@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 17:17:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:09:55 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	mandelbrot(t_window window, t_params params)
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
-				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 100 * (params.zoom * params.zoom), 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100 * (params.zoom * params.zoom), params));
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 30 * (params.zoom * params.zoom), 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 30 * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
@@ -77,7 +77,9 @@ It all boils down to the following:
         zx=zx*zx-zy*zy+cx
         zy=2*xt+cy
 
-        These calculations are really the formula zn=z2n+1. The reason they look different is because i2=-1, a property of complex numbers.
+        These calculations are really the formula zn=z2n+1. 
+		The reason they look different is because i2=-1, 
+		a property of complex numbers.
 
 3. Repeat step 2 if:
 
@@ -85,9 +87,13 @@ a. you haven't reached 255 iterations yet [i<255]
 AND
 b. the absolute value of the result is lower than 4 [zx*zx+zy*zy)<4]
 
-4. change the color of the point you're calculating (ie. cx,cy) to the color corresponding to the number of iterations (the number of times you repeated steps 2 and 3)
+4. change the color of the point you're calculating (ie. cx,cy) to the color 
+corresponding to the number of iterations (the number of times you repeated 
+steps 2 and 3)
 
-        We set Red, Green and Blue values of the color of the square to the number of iterations, which generates a greyscale picture.
+        We set Red, Green and Blue values of the color
+		 of the square to the number of
+		iterations, which generates a greyscale picture.
 
 5. Select the next point (go by columns and rows)
 

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 13:51:23 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:15:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	window = &((t_fractol *)param)->window;
 	params = &((t_fractol *)param)->params;
 	(void)xdelta;
-	params->old_zoom = params->zoom;
 	if (ydelta > 0)
 		params->zoom = params->zoom + 0.05;
 	else if (ydelta < 0)
