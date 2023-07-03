@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 17:10:59 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:13:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,41 @@
 *	fractol.params.ymin = -1;
 *	fractol.params.ymax = 1;
 */
+
+static int	select_set(t_fractol fractol, int argc, char *argv[]);
+
 int	main(int argc, char *argv[])
 {
 	// t_window	window;
 	// t_zoom		zoom;
 	t_fractol	fractol;
-	/*Void for now, add handeling later*/
-	(void)argc;
-	(void)argv;
 	/*Change to handle user inputs later*/
 	fractol.params.xmin = -2;
 	fractol.params.xmax = 2;
 	fractol.params.ymin = -2;
 	fractol.params.ymax = 2;
-	fractol.params.zoom = 0;
+	fractol.params.zoom = 1;
 	fractol.window.mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (fractol.window.mlx == NULL)
 		exit (1);
 	fractol.window.img = mlx_new_image(fractol.window.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(fractol.window.mlx, fractol.window.img, 0, 0);
 	hooks(&fractol);
-	/*temp*/
-	mandelbrot(fractol.window, fractol.params);
-	//julia(fractol.window, fractol.params);
+	select_set(fractol, argc, argv);
 	mlx_loop(fractol.window.mlx);
 	return (0);
 }
+
+static int	select_set(t_fractol fractol, int argc, char *argv[])
+{
+	if (argc < 2)
+		return (mandelbrot(fractol.window, fractol.params), 0);
+	if (ft_strncmp(ft_strtolower(argv[1]), "julia", ft_strlen(argv[1])) == 0)
+		return (julia(fractol.window, fractol.params), 0);
+	else
+		return (mandelbrot(fractol.window, fractol.params), 0);
+}
+
 /*
  * Lets you set a custom image as the program icon.
  * 
