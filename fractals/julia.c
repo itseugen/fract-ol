@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:09:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 14:44:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:48:08 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	julia(t_window window, t_params params)
 	(void)params.zoom;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(x, y, 100, -0.5, 0.5);
+		pxlval = getiteration(x, y, 100, 0.5, -0.5);
 		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100, params));
 		x++;
 		if (x == WIDTH)
