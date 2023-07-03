@@ -6,31 +6,31 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:09:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 16:48:08 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:38:34 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int		getiteration(int x, int y, int maxiter, double creal, double cimg);
+static int		getiteration(double x, double y, int maxiter, double creal, double cimg);
 
 
-/// Later add a typedef with xmin x max and so on or a define
+///!FIX ZOOM
 void	julia(t_window window, t_params params)
 {
-	// double	xmin = -2.5 / params.zoom;
-	// double	xmax = 1 / params.zoom;
-	// double	ymin = -1 / params.zoom;
-	// double	ymax = 1 / params.zoom;
 	int		x = 0;
 	int		y = 0;
 	int		pxlval;
 
-	(void)params.zoom;
+	params.xmin = params.xmin / params.zoom;
+	params.xmax = params.xmax / params.zoom;
+	params.ymin = params.ymin / params.zoom;
+	params.ymax = params.ymax / params.zoom;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(x, y, 100, 0.5, -0.5);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 100, params));
+		pxlval = getiteration(params.xmin + (x * ((params.xmax - params.xmin) / WIDTH)),
+				params.ymin + (y * ((params.ymax - params.ymin) / HEIGHT)), 30 * (params.zoom * params.zoom), -0.6, 0.6);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 30 * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
@@ -41,10 +41,11 @@ void	julia(t_window window, t_params params)
 	return ;
 }
 
-static int	getiteration(int x, int y, int maxiter, double creal, double cimg)
+static int	getiteration(double x, double y, int maxiter, double creal, double cimg)
 {
 	double	zreal;
 	double	zimg;
+	double	temp;
 	int		iter;
 
 	iter = 0;
@@ -52,12 +53,12 @@ static int	getiteration(int x, int y, int maxiter, double creal, double cimg)
 	zimg = y;
 	while (iter < maxiter)
 	{
-		zreal = (zreal * zreal) + creal;
-		zimg = (zimg * zimg) + cimg;
+		temp = zreal * zreal - zimg * zimg + creal;
+		zimg = 2 * zreal * zimg + cimg;
+		zreal = temp;
 		if (sqrt(zreal * zreal + zimg * zimg) > 4)
 			break ;
 		iter++;
 	}
 	return (iter);
 }
-
