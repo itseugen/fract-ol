@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:09:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 17:38:34 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:00:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	julia(t_window window, t_params params)
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(params.xmin + (x * ((params.xmax - params.xmin) / WIDTH)),
-				params.ymin + (y * ((params.ymax - params.ymin) / HEIGHT)), 30 * (params.zoom * params.zoom), -0.6, 0.6);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 30 * (params.zoom * params.zoom), params));
+				params.ymin + (y * ((params.ymax - params.ymin) / HEIGHT)), params.maxiter * (params.zoom * params.zoom), -0.6, 0.6);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, params.maxiter * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 14:09:55 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:00:06 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ void	mandelbrot(t_window window, t_params params)
 	int		y = 0;
 	int		pxlval;
 
-	params.xmin = params.xmin / params.zoom;
-	params.xmax = params.xmax / params.zoom;
-	params.ymin = params.ymin / params.zoom;
-	params.ymax = params.ymax / params.zoom;
+	// params.xmin = params.xmin / params.zoom;
+	// params.xmax = params.xmax / params.zoom;
+	// params.ymin = params.ymin / params.zoom;
+	// params.ymax = params.ymax / params.zoom;
+	if (params.zoom < 1)
+		params.zoom = 1;
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
-				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), 30 * (params.zoom * params.zoom), 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, 30 * (params.zoom * params.zoom), params));
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), params.maxiter * (params.zoom * params.zoom), 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval, params.maxiter * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
