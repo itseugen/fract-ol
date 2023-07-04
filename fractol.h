@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 17:04:36 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:34:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # include <math.h>
 # include <stdint.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 /* ************************************************************************** */
 /*                               Own Libraries                                */
@@ -37,6 +39,8 @@
 #  define HEIGHT 720
 # endif
 
+///add defines for colors
+
 /* ************************************************************************** */
 /*                                 typedefs                                   */
 /* ************************************************************************** */
@@ -51,8 +55,10 @@ typedef struct s_params
 {
 	int		current_x;
 	int		current_y;
+	int		maxiter;
 	double	zoom;
 	double	old_zoom;
+	double	zoomdif;
 	double	xmin;
 	double	xmax;
 	double	ymin;
@@ -70,6 +76,7 @@ typedef struct s_fractol
 /* ************************************************************************** */
 
 void		hooks(t_fractol *fractol);
+void		manual(void);
 
 /* ************************************************************************** */
 /*                                 fractal sets                               */
