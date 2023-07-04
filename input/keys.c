@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 08:43:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:56:15 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	params->ymax = params->ymax / params->zoomdif;
 	// }
 	mandelbrot(*window, *params);
+	//julia(*window, *params);
 }
 /*
 void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
