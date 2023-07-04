@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 10:36:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:00:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ static void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.ymin = -2;
 	fractol->params.ymax = 2;
 	fractol->params.zoom = 1;
+	fractol->params.colour = STANDART;
+	fractol->params.creal = 0.6;
+	fractol->params.cimg = -0.6;
 	user_vals(fractol, argc, argv);
 }
 
@@ -71,8 +74,15 @@ static void	user_vals(t_fractol *fractol, int argc, char *argv[])
 	{
 		if (ft_strncmp(ft_strtolower(argv[i]), "iter:", 5) == 0)
 			fractol->params.maxiter = ft_atoi(argv[i] + 5);
+		else if (ft_strncmp(ft_strtolower(argv[i]), "rainbow", 7) == 0)
+			fractol->params.colour = RAINBOW;
+		else if (ft_strncmp(ft_strtolower(argv[i]), "creal:", 6) == 0)
+			fractol->params.creal = ft_atof(argv[i] + 6);
+		else if (ft_strncmp(ft_strtolower(argv[i]), "cimg:", 5) == 0)
+			fractol->params.cimg = ft_atof(argv[i] + 5);
 		i++;
 	}
+	printf("cimg: %f\n", fractol->params.cimg);
 }
 
 /// @brief select which set to display
