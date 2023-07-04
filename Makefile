@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/07/04 08:58:43 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/07/04 13:59:35 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c input/keys.c input/help.c
 SOURCE += fractals/mandelbrot.c fractals/julia.c fractals/mandelbrot2.c fractals/mandelbrot3.c
-SOURCE += colours/intergrad.c colours/colours.c
-SOURCE += utils/ft_strtolower.c
+SOURCE += colours/intergrad.c colours/colours.c colours/rainbow.c
+SOURCE += utils/ft_strtolower.c utils/ft_atof.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
