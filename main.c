@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 17:45:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:36:04 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 static int	select_set(t_fractol fractol, int argc, char *argv[]);
 static void	init_vals(t_fractol *fractol, int argc, char *argv[]);
+static void	user_vals(t_fractol *fractol, int argc, char *argv[]);
 
 int	main(int argc, char *argv[])
 {
@@ -39,15 +40,46 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
+/// @brief Initialize all values to standart
+/// @param fractol 
+/// @param argc 
+/// @param argv 
 static void	init_vals(t_fractol *fractol, int argc, char *argv[])
 {
+	if (argc == 2 && ft_strncmp(ft_strtolower(argv[1]),
+			"help", ft_strlen(argv[1])) == 0)
+		manual();
+	fractol->params.maxiter = 30;
 	fractol->params.xmin = -2;
 	fractol->params.xmax = 2;
 	fractol->params.ymin = -2;
 	fractol->params.ymax = 2;
 	fractol->params.zoom = 1;
+	user_vals(fractol, argc, argv);
 }
 
+/// @brief Change the values to user preference
+/// @param fractol 
+/// @param argc 
+/// @param argv 
+static void	user_vals(t_fractol *fractol, int argc, char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_strncmp(ft_strtolower(argv[i]), "iter:", 5) == 0)
+			fractol->params.maxiter = ft_atoi(argv[i] + 5);
+		i++;
+	}
+}
+
+/// @brief select which set to display
+/// @param fractol 
+/// @param argc 
+/// @param argv 
+/// @return returns 0 on success
 static int	select_set(t_fractol fractol, int argc, char *argv[])
 {
 	if (argc < 2)
