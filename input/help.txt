@@ -1,5 +1,5 @@
 How to use my fractol program:
-./fractol \033[0;32m <type> \033[0;35m <iter:<number>>
+./fractol \033[0;32m <type> \033[0;35m <iter:<number>> <colour>
 
 \033[0;32m
 replace type with:
@@ -12,3 +12,7 @@ replace iter with:
 	iter:<number>
 	and replace number with the amount of iterations you want to start the fractal with 
 	(too big or too small numbers will look bad and big numbers might increase render times (by a lot))
+
+replace colour with:
+	rainbow
+leave empty for a standart colour scheme
