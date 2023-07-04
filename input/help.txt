@@ -1,5 +1,5 @@
 How to use my fractol program:
-./fractol \033[0;32m <type> \033[0;35m <iter:<number>> <colour>
+./fractol \033[0;32m <type> \033[0;35m <iter:<number>> <colour> <creal:<number>> <cimg:<number>>
 
 \033[0;32m
 replace type with:
@@ -16,3 +16,16 @@ replace iter with:
 replace colour with:
 	rainbow
 leave empty for a standart colour scheme
+
+replace creal with:
+	creal:<number>
+	and replace number with the real part of the complex julia number
+leave empty for standart values
+
+replace cimg with:
+	cimg:<number>
+	and replace number with the imaginary part of the complex julia number
+leave empty for standart values
+
+IMPORTANT: If you want to specify the set used, it has to be the first argument, all other
+arguments can be in any order (or left empty) you like
