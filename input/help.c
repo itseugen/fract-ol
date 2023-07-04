@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 08:58:23 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 11:09:54 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:36:21 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	manual(void)
 	str = get_next_line(fd);
 	while (str != NULL)
 	{
-		red();
 		ft_printf("%s", str);
 		free(str);
 		str = get_next_line(fd);
