@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/03 17:44:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 08:43:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static int	close_window(void *param)
 
 	/*Add frees if needed*/
 	window = (t_window *)param;
-	mlx_delete_image(window->mlx, window->img);
-	mlx_close_window(window->mlx);
-	mlx_terminate(window->mlx);
+	//mlx_delete_image(window->mlx, window->img);
+	//mlx_close_window(window->mlx);
+	//mlx_terminate(window->mlx);
 	exit(0);
 }
 
@@ -56,19 +56,33 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	t_window	*window;
 	int32_t		x;
 	int32_t		y;
+	double		zoomdif;
 
 	window = &((t_fractol *)param)->window;
 	params = &((t_fractol *)param)->params;
 	(void)xdelta;
 	if (ydelta > 0)
+	{
 		params->zoom = params->zoom + 0.05;
+		params->zoomdif = 1.05;
+	}
 	else if (ydelta < 0)
+	{
 		params->zoom = params->zoom - 0.05;
+		params->zoomdif = 0.95;
+	}
 	mlx_get_mouse_pos(window->mlx, &x, &y);
 	// if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
 	// 	zoom_on_cursor(params, window, x, y);
+	// else
+	// {
 	printf("Current Zoom value: %f\n", params->zoom);
 	printf("Mouse Position: (%d, %d)\n", x, y);
+	params->xmin = params->xmin / params->zoomdif;
+	params->xmax = params->xmax / params->zoomdif;
+	params->ymin = params->ymin / params->zoomdif;
+	params->ymax = params->ymax / params->zoomdif;
+	// }
 	mandelbrot(*window, *params);
 }
 /*
@@ -77,18 +91,35 @@ void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 
 // static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
 // {
-// 	double	zoom_ratio;
-// 	double	diff_width;
-// 	double	diff_height;
-// 	double desiredwidth = WIDTH / params->zoom;
-// 	double desiredheight = HEIGHT / params->zoom;
+// 	double	rangex;
+// 	double	rangey;
+// 	double	midx;
+// 	double	midy;
+// 	double	cur_width;
+// 	double	cur_height;
 
-// 	(void)window;
-// 	zoom_ratio = params->zoom / params->old_zoom;
-// 	diff_width = WIDTH / zoom_ratio - WIDTH;
-// 	diff_height = HEIGHT / zoom_ratio - HEIGHT;
-// 	params->xmin = params->xmin - (desiredwidth / 2.0);
-// 	params->xmax = params->xmax + (desiredwidth / 2.0);
-// 	params->ymin = params->ymin - (desiredheight / 2.0);
-// 	params->ymax = params->ymax + (desiredheight / 2.0);
+// 	rangex = (params->xmax - params->xmin) / params->zoomdif;
+// 	rangey = (params->ymax - params->ymin) / params->zoomdif;
+// 	cur_width = WIDTH / params->zoom;
+// 	cur_height = HEIGHT / params->zoom;
+// 	if (x < (cur_width / 2))
+// 		midx = (cur_width / 2);
+// 	else if (x > (WIDTH - (cur_width / 2)))
+// 		midx = WIDTH - (cur_width / 2);
+// 	else
+// 		midx = x;
+// 	if (y < (cur_height / 2))
+// 		midy = (cur_height / 2);
+// 	else if (y > (HEIGHT - (cur_height / 2)))
+// 		midy = HEIGHT - (cur_height / 2);
+// 	else
+// 		midy = y;
+
+// 	double middleDiffX = midx - (2.0 + (-2.0)) / 2.0;
+// 	double middleDiffY = midy - (2.0 + (-2.0)) / 2.0;
+
+// 	params->xmin = midx - rangex / 2.0 - middleDiffX;
+// 	params->xmax = midx + rangex / 2.0 - middleDiffX;
+// 	params->ymin = midy - rangey / 2.0 - middleDiffY;
+// 	params->ymax = midy + rangey / 2.0 - middleDiffY;
 // }
