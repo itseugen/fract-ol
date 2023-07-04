@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:24:24 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 16:11:28 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:48:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 uint32_t	getcolor(int iterations, int max_iterations, t_params params)
 {
-	// (void)params; //change later!
-	return (intergrad(iterations, max_iterations));
+	if (params.colour == RAINBOW)
+		return (rainbow(iterations, max_iterations));
+	else
+		return (intergrad(iterations, max_iterations));
 }
