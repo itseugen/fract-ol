@@ -6,13 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 17:19:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:19:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static void	wasd(t_params *params, t_window * window, double movement);
+static void	wasd(t_params *params, t_window *window, double movement);
 
 void	arrow_keys(void *param)
 {
