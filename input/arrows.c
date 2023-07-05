@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 17:04:39 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:19:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	arrow_keys(void *param)
 	wasd(params, window, movement);
 }
 
-static void	wasd(t_params *params, t_window * window, double movement)
+static void	wasd(t_params *params, t_window *window, double movement)
 {
 	if (mlx_is_key_down(window->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(window->mlx, MLX_KEY_W))
