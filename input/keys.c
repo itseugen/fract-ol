@@ -6,15 +6,14 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 10:56:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:55:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-#include <stdio.h>
 
 static int	close_window(void *param);
-static int	close_keys(int keycode, void *param);
+static int	keys(int keycode, void *param);
 static void	zoomdetec(double xdelta, double ydelta, void *param);
 static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y);
 
@@ -23,16 +22,19 @@ static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y);
 void	hooks(t_fractol *fractol)
 {
 	mlx_close_hook(fractol->window.mlx, (void *)close_window, NULL);
-	mlx_key_hook(fractol->window.mlx, (void *)close_keys, NULL);
+	mlx_key_hook(fractol->window.mlx, (void *)keys, fractol);
+	//mlx_key_hook(fractol->window.mlx, (void *)arrow_keys, fractol);
 	mlx_scroll_hook(fractol->window.mlx, zoomdetec, fractol);
 }
 
 /// @brief Closes the window on 'ESC'
 /// @param keycode the key pressed
-static int	close_keys(int keycode, void *param)
+static int	keys(int keycode, void *param)
 {
 	if (keycode == MLX_KEY_ESCAPE)
 		close_window(param);
+	else if (keycode == MLX_KEY_RIGHT)
+		arrow_keys(keycode, param);
 	return (0);
 }
 
@@ -44,9 +46,9 @@ static int	close_window(void *param)
 
 	/*Add frees if needed*/
 	window = (t_window *)param;
-	//mlx_delete_image(window->mlx, window->img);
-	//mlx_close_window(window->mlx);
-	//mlx_terminate(window->mlx);
+	// mlx_delete_image(window->mlx, window->img);
+	// mlx_close_window(window->mlx);
+	// mlx_terminate(window->mlx);
 	exit(0);
 }
 

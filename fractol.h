@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 13:55:12 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:50:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_fractol
 
 void		hooks(t_fractol *fractol);
 void		manual(void);
+void		arrow_keys(int keycode, void *param);
 
 /* ************************************************************************** */
 /*                                 fractal sets                               */
