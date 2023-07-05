@@ -6,29 +6,57 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 13:58:41 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:04:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	arrow_keys(int keycode, void *param)
+static void	wasd(t_params *params, t_window * window, double movement);
+
+void	arrow_keys(void *param)
 {
-	// t_params	*params;
-	// t_window	*window;
-	t_fractol	*test;
+	t_params	*params;
+	t_window	*window;
 	double		movement;
 
-	test = (t_fractol *)param;
-	// window = &((t_fractol *)param)->window;
-	// params = &((t_fractol *)param)->params;
-	printf("zoom: %f\n", test->params.zoom);
-	if (keycode == MLX_KEY_RIGHT)
+	window = &((t_fractol *)param)->window;
+	params = &((t_fractol *)param)->params;
+	if (mlx_is_key_down(window->mlx, MLX_KEY_RIGHT)
+		|| mlx_is_key_down(window->mlx, MLX_KEY_D))
 	{
-		//movement = 0.1 / params->zoom;
-		// params->xmin += movement;
-		// params->xmax += movement;
-		// printf("Right key pressed: xmin: %f, xmax: %f, movement: %f\n", params->xmin, params->xmax, movement);
-		// mandelbrot(*window, *params);
+		movement = 0.1 / (2 * params->zoom);
+		params->xmin += movement;
+		params->xmax += movement;
+		mandelbrot(*window, *params);
+	}
+	if (mlx_is_key_down(window->mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(window->mlx, MLX_KEY_A))
+	{
+		movement = 0.1 / (2 * params->zoom);
+		params->xmin -= movement;
+		params->xmax -= movement;
+		mandelbrot(*window, *params);
+	}
+	wasd(params, window, movement);
+}
+
+static void	wasd(t_params *params, t_window * window, double movement)
+{
+	if (mlx_is_key_down(window->mlx, MLX_KEY_UP)
+		|| mlx_is_key_down(window->mlx, MLX_KEY_W))
+	{
+		movement = 0.1 / (2 * params->zoom);
+		params->ymin -= movement;
+		params->ymax -= movement;
+		mandelbrot(*window, *params);
+	}
+	if (mlx_is_key_down(window->mlx, MLX_KEY_DOWN)
+		|| mlx_is_key_down(window->mlx, MLX_KEY_S))
+	{
+		movement = 0.1 / (2 * params->zoom);
+		params->ymin += movement;
+		params->ymax += movement;
+		mandelbrot(*window, *params);
 	}
 }
