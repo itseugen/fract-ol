@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:19:39 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 14:02:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:24:51 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ double	ft_atof(const char *str)
 
 	i = 0;
 	is_n = 1;
+	comma = 0;
 	num = (double)ft_atoi(str);
 	while (str[i] != '\0' && str[i] != '.')
 	{
