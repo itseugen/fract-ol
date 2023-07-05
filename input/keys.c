@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 13:55:03 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:50:33 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	hooks(t_fractol *fractol)
 	mlx_close_hook(fractol->window.mlx, (void *)close_window, NULL);
 	mlx_key_hook(fractol->window.mlx, (void *)keys, fractol);
 	//mlx_key_hook(fractol->window.mlx, (void *)arrow_keys, fractol);
+	mlx_loop_hook(fractol->window.mlx, arrow_keys, fractol);
 	mlx_scroll_hook(fractol->window.mlx, zoomdetec, fractol);
 }
 
@@ -33,8 +34,8 @@ static int	keys(int keycode, void *param)
 {
 	if (keycode == MLX_KEY_ESCAPE)
 		close_window(param);
-	else if (keycode == MLX_KEY_RIGHT)
-		arrow_keys(keycode, param);
+	// else if (keycode == MLX_KEY_RIGHT)
+	// 	arrow_keys(keycode, param);
 	return (0);
 }
 
