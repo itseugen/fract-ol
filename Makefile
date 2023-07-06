@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/07/05 16:47:08 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/07/06 15:44:12 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c input/keys.c input/help.c input/arrows.c
-SOURCE += fractals/mandelbrot.c fractals/julia.c fractals/mandelbrot2.c fractals/mandelbrot3.c
+SOURCE += fractals/mandelbrot.c fractals/julia.c fractals/mandelbrot2.c fractals/mandelbrot3.c fractals/choose_set.c
 SOURCE += colours/intergrad.c colours/colours.c colours/rainbow.c
 SOURCE += utils/ft_strtolower.c utils/ft_atof.c
 

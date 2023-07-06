@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 14:00:26 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:38:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.colour = STANDART;
 	fractol->params.creal = 0.6;
 	fractol->params.cimg = -0.6;
+	fractol->params.set = MANDELBROT;
 	user_vals(fractol, argc, argv);
 }
 
@@ -80,6 +81,8 @@ static void	user_vals(t_fractol *fractol, int argc, char *argv[])
 			fractol->params.creal = ft_atof(argv[i] + 6);
 		else if (ft_strncmp(ft_strtolower(argv[i]), "cimg:", 5) == 0)
 			fractol->params.cimg = ft_atof(argv[i] + 5);
+		else if (ft_strncmp(ft_strtolower(argv[i]), "julia", 5) == 0)
+			fractol->params.set = JULIA;
 		i++;
 	}
 	printf("cimg: %f\n", fractol->params.cimg);
@@ -92,9 +95,7 @@ static void	user_vals(t_fractol *fractol, int argc, char *argv[])
 /// @return returns 0 on success
 static int	select_set(t_fractol fractol, int argc, char *argv[])
 {
-	if (argc < 2)
-		return (mandelbrot(fractol.window, fractol.params), 0);
-	if (ft_strncmp(ft_strtolower(argv[1]), "julia", ft_strlen(argv[1])) == 0)
+	if (fractol.params.set == JULIA)
 		return (julia(fractol.window, fractol.params), 0);
 	else
 		return (mandelbrot(fractol.window, fractol.params), 0);

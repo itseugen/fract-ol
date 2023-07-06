@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 17:19:59 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:49:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	wasd(t_params *params, t_window *window, double movement);
 
+/// @brief Makes the arrow/wasd keys move the set
+/// @param param the fractols typedef
 void	arrow_keys(void *param)
 {
 	t_params	*params;
@@ -28,7 +30,7 @@ void	arrow_keys(void *param)
 		movement = 0.1 / (2 * params->zoom);
 		params->xmin += movement;
 		params->xmax += movement;
-		mandelbrot(*window, *params);
+		choose_set(*window, *params);
 	}
 	if (mlx_is_key_down(window->mlx, MLX_KEY_LEFT)
 		|| mlx_is_key_down(window->mlx, MLX_KEY_A))
@@ -36,7 +38,7 @@ void	arrow_keys(void *param)
 		movement = 0.1 / (2 * params->zoom);
 		params->xmin -= movement;
 		params->xmax -= movement;
-		mandelbrot(*window, *params);
+		choose_set(*window, *params);
 	}
 	wasd(params, window, movement);
 }
@@ -49,7 +51,7 @@ static void	wasd(t_params *params, t_window *window, double movement)
 		movement = 0.1 / (2 * params->zoom);
 		params->ymin -= movement;
 		params->ymax -= movement;
-		mandelbrot(*window, *params);
+		choose_set(*window, *params);
 	}
 	if (mlx_is_key_down(window->mlx, MLX_KEY_DOWN)
 		|| mlx_is_key_down(window->mlx, MLX_KEY_S))
@@ -57,6 +59,6 @@ static void	wasd(t_params *params, t_window *window, double movement)
 		movement = 0.1 / (2 * params->zoom);
 		params->ymin += movement;
 		params->ymax += movement;
-		mandelbrot(*window, *params);
+		choose_set(*window, *params);
 	}
 }
