@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 16:50:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:42:12 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static int	keys(int keycode, void *param)
 {
 	if (keycode == MLX_KEY_ESCAPE)
 		close_window(param);
-	// else if (keycode == MLX_KEY_RIGHT)
-	// 	arrow_keys(keycode, param);
 	return (0);
 }
 
@@ -75,12 +73,13 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 		params->zoomdif = 0.95;
 	}
 	mlx_get_mouse_pos(window->mlx, &x, &y);
-	// if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
-	// 	zoom_on_cursor(params, window, x, y);
+	if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT)
+		zoom_on_cursor(params, window, x, y);
 	// else
 	// {
 	printf("Current Zoom value: %f\n", params->zoom);
 	printf("Mouse Position: (%d, %d)\n", x, y);
+	printf("xmin: %f,\nxmax: %f\nymin: %f\n ymax:%f\n", params->xmin, params->xmax, params->ymin, params->ymax);
 	params->xmin = params->xmin / params->zoomdif;
 	params->xmax = params->xmax / params->zoomdif;
 	params->ymin = params->ymin / params->zoomdif;
@@ -93,37 +92,25 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 */
 
-// static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
-// {
-// 	double	rangex;
-// 	double	rangey;
-// 	double	midx;
-// 	double	midy;
-// 	double	cur_width;
-// 	double	cur_height;
+static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
+{
+	double	xrange;
+	double	xmovepp;
+	double	xmid;
 
-// 	rangex = (params->xmax - params->xmin) / params->zoomdif;
-// 	rangey = (params->ymax - params->ymin) / params->zoomdif;
-// 	cur_width = WIDTH / params->zoom;
-// 	cur_height = HEIGHT / params->zoom;
-// 	if (x < (cur_width / 2))
-// 		midx = (cur_width / 2);
-// 	else if (x > (WIDTH - (cur_width / 2)))
-// 		midx = WIDTH - (cur_width / 2);
-// 	else
-// 		midx = x;
-// 	if (y < (cur_height / 2))
-// 		midy = (cur_height / 2);
-// 	else if (y > (HEIGHT - (cur_height / 2)))
-// 		midy = HEIGHT - (cur_height / 2);
-// 	else
-// 		midy = y;
+	xmid = WIDTH / 2;
+	xrange = params->xmax - params->xmin;
+	xmovepp = xrange / WIDTH;
+	params->xmin = params->xmin + (xmovepp * (x - xmid));
+	params->xmax = params->xmax + (xmovepp * (x - xmid));
 
-// 	double middleDiffX = midx - (2.0 + (-2.0)) / 2.0;
-// 	double middleDiffY = midy - (2.0 + (-2.0)) / 2.0;
+	double	yrange;
+	double	ymovepp;
+	double	ymid;
 
-// 	params->xmin = midx - rangex / 2.0 - middleDiffX;
-// 	params->xmax = midx + rangex / 2.0 - middleDiffX;
-// 	params->ymin = midy - rangey / 2.0 - middleDiffY;
-// 	params->ymax = midy + rangey / 2.0 - middleDiffY;
-// }
+	ymid = HEIGHT / 2;
+	yrange = params->ymax - params->ymin;
+	ymovepp = yrange / HEIGHT;
+	params->ymin = params->ymin + (ymovepp * (y - ymid));
+	params->ymax = params->ymax + (ymovepp * (y - ymid));
+}
