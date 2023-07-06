@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:12:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:55:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static int		getiteration(double real, double imag, int maxiter, double maxval);
 
 /// Later add a typedef with xmin x max and so on or a define
+
+/// @brief THe mandelbrot set
+/// @param window 
+/// @param params 
 void	mandelbrot(t_window window, t_params params)
 {
 	int		x = 0;

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 08:58:23 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 14:36:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:56:44 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 //!remove If mem leaks
 
-/// @brief 
-/// @param  
-/// @return 
+/// @brief Gives description on all possible modifiers
 void	manual(void)
 {
 	char	*str;

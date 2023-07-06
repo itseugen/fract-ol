@@ -6,12 +6,16 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:42:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 11:06:43 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:54:53 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
+/// @brief A static (no fading) colour set in the colours of the rainbow
+/// @param iterations 
+/// @param max_iterations 
+/// @return returns colour to apply to the pixel
 uint32_t	rainbow(int iterations, int max_iterations)
 {
 	if (iterations == max_iterations)

@@ -27,5 +27,4 @@ replace cimg with:
 	and replace number with the imaginary part of the complex julia number
 leave empty for standart values
 
-IMPORTANT: If you want to specify the set used, it has to be the first argument, all other
-arguments can be in any order (or left empty) you like
+All arguments can be in whatever order.

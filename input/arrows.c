@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:49:26 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:56:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	arrow_keys(void *param)
 	wasd(params, window, movement);
 }
 
+/// @brief A norm proof extenstion to arrows
+/// @param params 
+/// @param window 
+/// @param movement 
 static void	wasd(t_params *params, t_window *window, double movement)
 {
 	if (mlx_is_key_down(window->mlx, MLX_KEY_UP)

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:23:16 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/06/23 16:14:45 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:54:08 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static uint32_t	getpartial(int iterations,
 					int maxIterations, uint32_t endcolour);
 
+/// @brief Gives back a four colour set that fades
+/// @param iterations 
+/// @param max_iterations 
+/// @return returns the colour
 uint32_t	intergrad(int iterations, int max_iterations)
 {
 	if (iterations == max_iterations)
