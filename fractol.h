@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 16:49:00 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:46:29 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@
 # define STANDART 0
 # define RAINBOW 1
 
+# define MANDELBROT 0
+# define JULIA 1
+
 /* ************************************************************************** */
 /*                                 typedefs                                   */
 /* ************************************************************************** */
@@ -59,15 +62,16 @@ typedef struct s_params
 	int		current_y;
 	int		maxiter;
 	int		colour;
-	double	zoom;
-	double	old_zoom;
-	double	zoomdif;
-	double	xmin;
-	double	xmax;
-	double	ymin;
-	double	ymax;
-	double	creal;
-	double	cimg;
+	int		set;
+	long double	zoom;
+	long double	old_zoom;
+	long double	zoomdif;
+	long double	xmin;
+	long double	xmax;
+	long double	ymin;
+	long double	ymax;
+	long double	creal;
+	long double	cimg;
 }	t_params;
 
 typedef struct s_fractol
@@ -90,6 +94,7 @@ void		arrow_keys(void *param);
 
 void		mandelbrot(t_window window, t_params zoom);
 void		julia(t_window window, t_params params);
+void		choose_set(t_window window, t_params params);
 
 void		mandelbrot_test(t_window window, t_params params);
 void		mandelbrot3(t_window window, t_params params);
