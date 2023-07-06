@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 13:42:12 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:47:40 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,15 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 		zoom_on_cursor(params, window, x, y);
 	// else
 	// {
-	printf("Current Zoom value: %f\n", params->zoom);
+	printf("Current Zoom value: %LF\n", params->zoom);
 	printf("Mouse Position: (%d, %d)\n", x, y);
-	printf("xmin: %f,\nxmax: %f\nymin: %f\n ymax:%f\n", params->xmin, params->xmax, params->ymin, params->ymax);
+	printf("xmin: %LF,\nxmax: %LF\nymin: %LF\n ymax:%LF\n", params->xmin, params->xmax, params->ymin, params->ymax);
 	params->xmin = params->xmin / params->zoomdif;
 	params->xmax = params->xmax / params->zoomdif;
 	params->ymin = params->ymin / params->zoomdif;
 	params->ymax = params->ymax / params->zoomdif;
 	// }
-	mandelbrot(*window, *params);
-	//julia(*window, *params);
+	choose_set(*window, *params);
 }
 /*
 void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
@@ -94,9 +93,9 @@ void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 
 static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
 {
-	double	xrange;
-	double	xmovepp;
-	double	xmid;
+	long double	xrange;
+	long double	xmovepp;
+	long double	xmid;
 
 	xmid = WIDTH / 2;
 	xrange = params->xmax - params->xmin;
@@ -104,9 +103,9 @@ static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
 	params->xmin = params->xmin + (xmovepp * (x - xmid));
 	params->xmax = params->xmax + (xmovepp * (x - xmid));
 
-	double	yrange;
-	double	ymovepp;
-	double	ymid;
+	long double	yrange;
+	long double	ymovepp;
+	long double	ymid;
 
 	ymid = HEIGHT / 2;
 	yrange = params->ymax - params->ymin;
