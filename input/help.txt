@@ -28,3 +28,5 @@ replace cimg with:
 leave empty for standart values
 
 All arguments can be in whatever order.
+
+Use the 'z'-key to activate zooming on the cursor and use 'x' to deactivate it (active by default)
