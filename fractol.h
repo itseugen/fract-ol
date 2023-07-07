@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/07 14:21:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:20:56 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_params
 	long double	ymax;
 	long double	creal;
 	long double	cimg;
+	long double xmove;
+	long double ymove;
 }	t_params;
 
 typedef struct s_fractol
