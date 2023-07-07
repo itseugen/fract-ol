@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:38:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:26:23 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.creal = 0.6;
 	fractol->params.cimg = -0.6;
 	fractol->params.set = MANDELBROT;
+	fractol->params.zo_mouse = TRUE;
 	user_vals(fractol, argc, argv);
 }
 
