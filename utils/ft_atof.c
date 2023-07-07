@@ -6,12 +6,15 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 13:19:39 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/05 13:24:51 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:18:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
+/// @brief Converts a string to a float number
+/// @param str 
+/// @return The float of the converted string
 double	ft_atof(const char *str)
 {
 	double	num;
