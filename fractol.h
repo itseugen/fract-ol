@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:46:29 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:21:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@
 # define MANDELBROT 0
 # define JULIA 1
 
+# define TRUE 0
+# define FALSE 1
+
 /* ************************************************************************** */
 /*                                 typedefs                                   */
 /* ************************************************************************** */
@@ -63,6 +66,7 @@ typedef struct s_params
 	int		maxiter;
 	int		colour;
 	int		set;
+	int		zo_mouse;
 	long double	zoom;
 	long double	old_zoom;
 	long double	zoomdif;
@@ -86,7 +90,8 @@ typedef struct s_fractol
 
 void		hooks(t_fractol *fractol);
 void		manual(void);
-void		arrow_keys(void *param);
+void		arrow_keys(t_params *params, t_window *window);
+void		key_handle(void *param);
 
 /* ************************************************************************** */
 /*                                 fractal sets                               */

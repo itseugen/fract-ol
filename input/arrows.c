@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:21 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:56:01 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:21:21 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,10 @@ static void	wasd(t_params *params, t_window *window, double movement);
 
 /// @brief Makes the arrow/wasd keys move the set
 /// @param param the fractols typedef
-void	arrow_keys(void *param)
+void	arrow_keys(t_params *params, t_window *window)
 {
-	t_params	*params;
-	t_window	*window;
 	double		movement;
 
-	window = &((t_fractol *)param)->window;
-	params = &((t_fractol *)param)->params;
 	if (mlx_is_key_down(window->mlx, MLX_KEY_RIGHT)
 		|| mlx_is_key_down(window->mlx, MLX_KEY_D))
 	{
