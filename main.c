@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/08 13:13:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:34:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ static void	user_vals(t_fractol *fractol, int argc, char *argv[])
 			fractol->params.set = JULIA;
 		i++;
 	}
-	printf("cimg: %f\n", fractol->params.cimg);
+	printf("cimg: %LF\n", fractol->params.cimg);
+	printf("creal: %LF\n", fractol->params.creal);
 }
 
 /// @brief select which set to display
