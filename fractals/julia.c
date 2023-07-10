@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:09:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/04 14:07:22 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:17:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	julia(t_window window, t_params params)
 	int		y = 0;
 	int		pxlval;
 
-	params.xmin = params.xmin / params.zoom;
-	params.xmax = params.xmax / params.zoom;
-	params.ymin = params.ymin / params.zoom;
-	params.ymax = params.ymax / params.zoom;
+	if (params.zoom < 1)
+		params.zoom = 1;
 	while (y < HEIGHT)
 	{
 		pxlval = getiteration(params.xmin + (x * ((params.xmax - params.xmin) / WIDTH)),
