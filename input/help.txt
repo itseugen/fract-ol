@@ -5,6 +5,7 @@ How to use my fractol program:
 replace type with:
 	mandelbrot
 	julia
+	burning_ship
 leave type empty to display mandelbrot set
 
 \033[0;35m

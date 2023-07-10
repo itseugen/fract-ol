@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 13:19:13 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:48:12 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 
 # define MANDELBROT 0
 # define JULIA 1
+# define BURNING_SHIP 3
 
 # define TRUE 0
 # define FALSE 1
@@ -105,6 +106,7 @@ void		key_handle(void *param);
 void		mandelbrot(t_window window, t_params zoom);
 void		julia(t_window window, t_params params);
 void		choose_set(t_window window, t_params params);
+void		burning_ship(t_window window, t_params params);
 
 /* ************************************************************************** */
 /*                                 colouring                                  */
