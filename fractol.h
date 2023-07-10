@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 15:48:12 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:57:58 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 ///add defines for colors
 # define STANDART 0
 # define RAINBOW 1
+# define SHIFT 2
 
 # define MANDELBROT 0
 # define JULIA 1
@@ -115,6 +116,7 @@ void		burning_ship(t_window window, t_params params);
 uint32_t	intergrad(int iterations, int max_iterations);
 uint32_t	rainbow(int iterations, int max_iterations);
 uint32_t	getcolor(int iterations, int max_iterations, t_params params);
+uint32_t	shifting_range(int iterations, int max_iterations, t_params params);
 
 /* ************************************************************************** */
 /*                                 utilities                                  */

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:35:59 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 16:03:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:50:04 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static void	user_vals(t_fractol *fractol, int argc, char *argv[])
 			fractol->params.maxiter = ft_atoi(argv[i] + 5);
 		else if (ft_strncmp(ft_strtolower(argv[i]), "rainbow", 7) == 0)
 			fractol->params.colour = RAINBOW;
+		else if (ft_strncmp(ft_strtolower(argv[i]), "shift", 5) == 0)
+			fractol->params.colour = SHIFT;
 		else if (ft_strncmp(ft_strtolower(argv[i]), "creal:", 6) == 0)
 			fractol->params.creal = ft_atof(argv[i] + 6);
 		else if (ft_strncmp(ft_strtolower(argv[i]), "cimg:", 5) == 0)
