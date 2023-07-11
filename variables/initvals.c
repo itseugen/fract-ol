@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:47:47 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 16:09:59 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:47:27 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.xmove = 0;
 	fractol->params.ymove = 0;
 	fractol->params.zoomin = 0;
-	fractol->params.zoomout = 0;
+	fractol->params.zoomo = 0;
 	user_vals(fractol, argc, argv);
 	standart_vals(fractol);
 }

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 15:39:59 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:47:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_params
 	long double	xmove;
 	long double	ymove;
 	long int	zoomin;
-	long int	zoomout;
+	long int	zoomo;
 }	t_params;
 
 typedef struct s_fractol

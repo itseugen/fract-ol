@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 16:51:05 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:47:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	else if (ydelta < 0)
 	{
 		params->zoom = params->zoom - 0.05;
-		params->zoomout++;
+		params->zoomo++;
 	}
-	params->xmin = -2 / pow(1.05, params->zoomin) * pow(0.95, params->zoomout);
-	params->xmax = 2 / pow(1.05, params->zoomin) * pow(0.95, params->zoomout);
-	params->ymin = -2 / pow(1.05, params->zoomin) * pow(0.95, params->zoomout);
-	params->ymax = 2 / pow(1.05, params->zoomin) * pow(0.95, params->zoomout);
+	params->xmin = -2 / (pow(1.05, params->zoomin) * pow(0.95, params->zoomo));
+	params->xmax = 2 / (pow(1.05, params->zoomin) * pow(0.95, params->zoomo));
+	params->ymin = -2 / (pow(1.05, params->zoomin) * pow(0.95, params->zoomo));
+	params->ymax = 2 / (pow(1.05, params->zoomin) * pow(0.95, params->zoomo));
 	mlx_get_mouse_pos(((t_fractol *)param)->window.mlx, &x, &y);
 	if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT && params->zo_mouse == 0)
 		zoom_on_cursor(params, x, y);
