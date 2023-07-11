@@ -6,13 +6,14 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:10:55 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 13:14:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:35:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int		getiteration(double real, double imag, int maxiter, double maxval);
+static int	getiteration(double real, double imag,
+				int maxiter, double maxval);
 
 /// Later add a typedef with xmin x max and so on or a define
 
@@ -21,21 +22,22 @@ static int		getiteration(double real, double imag, int maxiter, double maxval);
 /// @param params 
 void	mandelbrot(t_window window, t_params params)
 {
-	int		x = 0;
-	int		y = 0;
+	int		x;
+	int		y;
 	int		pxlval;
 
-	// params.xmin = params.xmin / params.zoom;
-	// params.xmax = params.xmax / params.zoom;
-	// params.ymin = params.ymin / params.zoom;
-	// params.ymax = params.ymax / params.zoom;
+	x = 0;
+	y = 0;
 	if (params.zoom < 1)
 		params.zoom = 1;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
-				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), params.maxiter * (params.zoom * params.zoom), 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, params.maxiter * (params.zoom * params.zoom), params));
+		pxlval = getiteration(params.xmin
+				+ (x * (params.xmax - params.xmin) / WIDTH),
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT),
+				params.maxiter * (params.zoom * params.zoom), 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval,
+				params.maxiter * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{

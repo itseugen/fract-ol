@@ -6,29 +6,32 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:09:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 13:21:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:36:23 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int		getiteration(double x, double y, int maxiter, double creal, double cimg);
+static int	getiteration(double x, double y, int maxiter, t_params params);
 
-
-///!FIX ZOOM
 void	julia(t_window window, t_params params)
 {
-	int		x = 0;
-	int		y = 0;
+	int		x;
+	int		y;
 	int		pxlval;
 
+	x = 0;
+	y = 0;
 	if (params.zoom < 1)
 		params.zoom = 1;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(params.xmin + (x * ((params.xmax - params.xmin) / WIDTH)),
-				params.ymin + (y * ((params.ymax - params.ymin) / HEIGHT)), params.maxiter * (params.zoom * params.zoom), params.creal, params.cimg);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, params.maxiter * (params.zoom * params.zoom), params));
+		pxlval = getiteration(params.xmin
+				+ (x * ((params.xmax - params.xmin) / WIDTH)),
+				params.ymin + (y * ((params.ymax - params.ymin) / HEIGHT)),
+				params.maxiter * (params.zoom * params.zoom), params);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval,
+				params.maxiter * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
@@ -39,7 +42,7 @@ void	julia(t_window window, t_params params)
 	return ;
 }
 
-static int	getiteration(double x, double y, int maxiter, double creal, double cimg)
+static int	getiteration(double x, double y, int maxiter, t_params params)
 {
 	double	zreal;
 	double	zimg;
@@ -51,8 +54,8 @@ static int	getiteration(double x, double y, int maxiter, double creal, double ci
 	zimg = y;
 	while (iter < maxiter)
 	{
-		temp = zreal * zreal - zimg * zimg + creal;
-		zimg = 2 * zreal * zimg + cimg;
+		temp = zreal * zreal - zimg * zimg + params.creal;
+		zimg = 2 * zreal * zimg + params.cimg;
 		zreal = temp;
 		if (sqrt(zreal * zreal + zimg * zimg) > 4)
 			break ;

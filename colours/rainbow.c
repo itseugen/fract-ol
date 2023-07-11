@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:42:02 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/06 15:54:53 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:11:02 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ uint32_t	rainbow(int iterations, int max_iterations)
 	else
 		return (0xE40303FF);
 }
-

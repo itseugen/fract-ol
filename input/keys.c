@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 16:02:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:10:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,10 @@ static void	zoom_on_cursor(t_params *params, int x, int y)
 	xmovepp = xrange / WIDTH;
 	yrange = (params->ymax + params->xmove) - (params->ymin + params->xmove);
 	ymovepp = yrange / HEIGHT;
-
 	params->xmove = params->xmove + (xmovepp * (x - (WIDTH / 2)));
 	params->ymove = params->ymove + (ymovepp * (y - (HEIGHT / 2)));
-
 	params->xmin = params->xmin + params->xmove;
 	params->xmax = params->xmax + params->xmove;
-
 	params->ymin = params->ymin + params->ymove;
 	params->ymax = params->ymax + params->ymove;
 }

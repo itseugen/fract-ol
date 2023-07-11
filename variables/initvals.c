@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:47:47 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 15:42:10 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:09:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.cimg = NO_INIT;
 	fractol->params.set = NO_INIT;
 	fractol->params.maxiter = NO_INIT;
-
 	fractol->params.zo_mouse = TRUE;
 	fractol->params.xmin = -2;
 	fractol->params.xmax = 2;

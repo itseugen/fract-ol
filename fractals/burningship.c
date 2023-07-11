@@ -6,13 +6,14 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:06:54 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 16:09:52 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:12:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int		getiteration(double real, double imag, int maxiter, double maxval);
+static int		getiteration(double real, double imag,
+					int maxiter, double maxval);
 
 /// Later add a typedef with xmin x max and so on or a define
 
@@ -21,17 +22,22 @@ static int		getiteration(double real, double imag, int maxiter, double maxval);
 /// @param params 
 void	burning_ship(t_window window, t_params params)
 {
-	int		x = 0;
-	int		y = 0;
+	int		x;
+	int		y;
 	int		pxlval;
 
+	x = 0;
+	y = 0;
 	if (params.zoom < 1)
 		params.zoom = 1;
 	while (y < HEIGHT)
 	{
-		pxlval = getiteration(params.xmin + (x * (params.xmax - params.xmin) / WIDTH),
-				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT), params.maxiter * (params.zoom * params.zoom), 2.0);
-		mlx_put_pixel(window.img, x, y, getcolor(pxlval, params.maxiter * (params.zoom * params.zoom), params));
+		pxlval = getiteration(params.xmin
+				+ (x * (params.xmax - params.xmin) / WIDTH),
+				params.ymin + (y * (params.ymax - params.ymin) / HEIGHT),
+				params.maxiter * (params.zoom * params.zoom), 2.0);
+		mlx_put_pixel(window.img, x, y, getcolor(pxlval,
+				params.maxiter * (params.zoom * params.zoom), params));
 		x++;
 		if (x == WIDTH)
 		{
