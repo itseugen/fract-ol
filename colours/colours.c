@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:24:24 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 16:57:45 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:34:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ uint32_t	getcolor(int iterations, int max_iterations, t_params params)
 		return (rainbow(iterations, max_iterations));
 	else if (params.colour == SHIFT)
 		return (shifting_range(iterations, max_iterations, params));
+	else if (params.colour == TUVALU)
+		return (tuvalu(iterations, max_iterations));
+	else if (params.colour == INDIA)
+		return (india(iterations, max_iterations));
 	else
 		return (intergrad(iterations, max_iterations));
 }
