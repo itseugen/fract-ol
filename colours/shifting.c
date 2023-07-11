@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:46:50 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 18:30:23 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:17:19 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static uint32_t	getpartial(int iterations,
 					int maxIterations, uint32_t endcolour);
-static uint32_t	lerp(double zoom, double endzoom, uint32_t start_colour, uint32_t endcolour);
+static uint32_t	lerp(double zoom, double endzoom,
+					uint32_t start_colour, uint32_t endcolour);
 
 /// @brief Gives back a four colour set that fades
 /// @param iterations 
@@ -22,21 +23,32 @@ static uint32_t	lerp(double zoom, double endzoom, uint32_t start_colour, uint32_
 /// @return returns the colour
 uint32_t	shifting_range(int iterations, int max_iterations, t_params params)
 {
+	while (params.zoom > 7.0)
+		params.zoom = params.zoom - 6.0;
 	if (iterations == max_iterations)
 		return (0x000000FF);
-	else if (params.zoom <= 1.75)
-		return (getpartial(iterations, max_iterations, lerp(params.zoom, 1.75, 0xE40303, 0xFF8C00)));
-	else if (params.zoom <= 2.5)
-		return (getpartial(iterations, max_iterations, lerp(params.zoom, 2.5, 0xFF8C00, 0xFFED00)));
-	else if (params.zoom <= 3.25)
-		return (getpartial(iterations, max_iterations, lerp(params.zoom, 3.25, 0xFFED00, 0x008026)));
+	else if (params.zoom <= 2.0)
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 2.0, 0xE40303, 0xFF8C00)));
+	else if (params.zoom <= 3.0)
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 3.0, 0xFF8C00, 0xFFED00)));
 	else if (params.zoom <= 4.0)
-		return (getpartial(iterations, max_iterations, lerp(params.zoom, 4.0, 0x008026, 0x24408E)));
-	else if (params.zoom <= 4.75)
-		return (getpartial(iterations, max_iterations, lerp(params.zoom, 4.75, 0x24408E, 0x732982)));
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 4.0, 0xFFED00, 0x008026)));
+	else if (params.zoom <= 5.0)
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 5.0, 0x008026, 0x24408E)));
+	else if (params.zoom <= 6.0)
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 6.0, 0x24408E, 0x732982)));
+	else
+		return (getpartial(iterations, max_iterations,
+				lerp(params.zoom, 7.0, 0x732982, 0xE40303)));
 }
 
-static uint32_t	getpartial(int iterations, int maxIterations, uint32_t endcolour)
+static uint32_t	getpartial(int iterations, int maxIterations,
+						uint32_t endcolour)
 {
 	double		itergrad;
 	uint8_t		blue;
@@ -55,18 +67,15 @@ static uint32_t	getpartial(int iterations, int maxIterations, uint32_t endcolour
 	return ((blue << 24) | (green << 16) | (red << 8) | 0xFF);
 }
 
-static uint32_t	lerp(double zoom, double endzoom, uint32_t start_colour, uint32_t endcolour)
+static uint32_t	lerp(double zoom, double endzoom,
+					uint32_t start_colour, uint32_t endcolour)
 {
 	double		itergrad;
 	uint8_t		blue;
 	uint8_t		green;
 	uint8_t		red;
 
-
-	//!Fix this calculation so that p. e. 3.0 | 3.25 and 2.25 | 2.5 the itergrad would be the same
-	while (zoom / 0.75 >= 2)
-		zoom = zoom - 0.75;
-	itergrad = (zoom - 1.0) / 0.75;
+	itergrad = (zoom - (endzoom - 1.0)) / (endzoom - (endzoom - 1.0));
 	blue = (uint8_t)((itergrad) * ((endcolour >> 16) & 0xFF)
 			+ (1 - itergrad) * ((start_colour >> 16) & 0xFF));
 	green = (uint8_t)((itergrad) * ((endcolour >> 8) & 0xFF)
