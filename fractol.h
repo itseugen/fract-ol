@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/10 16:57:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:28:24 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@
 # endif
 
 ///add defines for colors
-# define STANDART 0
-# define RAINBOW 1
-# define SHIFT 2
+# define NO_INIT 0
+# define STANDART 1
+# define RAINBOW 2
+# define SHIFT 3
+# define TUVALU 4
+# define INDIA 5
 
-# define MANDELBROT 0
-# define JULIA 1
+# define MANDELBROT 1
+# define JULIA 2
 # define BURNING_SHIP 3
 
 # define TRUE 0
@@ -63,12 +66,12 @@ typedef struct s_window
 
 typedef struct s_params
 {
-	int		current_x;
-	int		current_y;
-	int		maxiter;
-	int		colour;
-	int		set;
-	int		zo_mouse;
+	int			current_x;
+	int			current_y;
+	int			maxiter;
+	int			colour;
+	int			set;
+	int			zo_mouse;
 	long double	zoom;
 	long double	old_zoom;
 	long double	zoomdif;
@@ -78,11 +81,10 @@ typedef struct s_params
 	long double	ymax;
 	long double	creal;
 	long double	cimg;
-	long double xmove;
-	long double ymove;
-
-	long int test;
-	long int test2;
+	long double	xmove;
+	long double	ymove;
+	long int	zoomin;
+	long int	zoomout;
 }	t_params;
 
 typedef struct s_fractol
@@ -117,6 +119,8 @@ uint32_t	intergrad(int iterations, int max_iterations);
 uint32_t	rainbow(int iterations, int max_iterations);
 uint32_t	getcolor(int iterations, int max_iterations, t_params params);
 uint32_t	shifting_range(int iterations, int max_iterations, t_params params);
+uint32_t	tuvalu(int iterations, int max_iterations);
+uint32_t	india(int iterations, int max_iterations);
 
 /* ************************************************************************** */
 /*                                 utilities                                  */
@@ -124,5 +128,13 @@ uint32_t	shifting_range(int iterations, int max_iterations, t_params params);
 
 char		*ft_strtolower(char *str);
 double		ft_atof(const char *str);
+
+/* ************************************************************************** */
+/*                                 variables                                  */
+/* ************************************************************************** */
+
+void		init_vals(t_fractol *fractol, int argc, char *argv[]);
+void		user_vals(t_fractol *fractol, int argc, char *argv[]);
+void		standart_vals(t_fractol *fractol, int argc, char *argv[]);
 
 #endif

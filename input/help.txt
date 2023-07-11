@@ -1,33 +1,40 @@
 How to use my fractol program:
-./fractol \033[0;32m <type> \033[0;35m <iter:<number>> <colour> <creal:<number>> <cimg:<number>>
+./fractol <type> <iter:<number>> <colour> <creal:<number>> <cimg:<number>>
 
-\033[0;32m
 replace type with:
 	mandelbrot
 	julia
 	burning_ship
 leave type empty to display mandelbrot set
 
-\033[0;35m
 replace iter with:
 	iter:<number>
 	and replace number with the amount of iterations you want to start the fractal with 
 	(too big or too small numbers will look bad and big numbers might increase render times (by a lot))
+	the number has to be an valid integer and bigger than 0
 
 replace colour with:
 	rainbow
+	shift
+	tuvalu
+	india
 leave empty for a standart colour scheme
+only one colour input will be tolerated
 
 replace creal with:
 	creal:<number>
 	and replace number with the real part of the complex julia number
-leave empty for standart values
+leave empty for standart values, only works if the julia set is chosen
 
 replace cimg with:
 	cimg:<number>
 	and replace number with the imaginary part of the complex julia number
-leave empty for standart values
+leave empty for standart values, only works if the julia set is chosen
 
 All arguments can be in whatever order.
 
 Use the 'z'-key to activate zooming on the cursor and use 'x' to deactivate it (active by default)
+if deactivate you will zoom to the middle of the fractol
+
+HINT: The more pixels in the set (the black pixels in the middle of the normal colour scheme) are
+visible, the longer the rendering might take.
