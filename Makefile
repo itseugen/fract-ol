@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/07/10 16:53:15 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/07/11 15:27:49 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SOURCE = main.c input/keys.c input/help.c input/arrows.c input/keys2.c
 SOURCE += fractals/mandelbrot.c fractals/julia.c fractals/choose_set.c fractals/burningship.c
 SOURCE += colours/intergrad.c colours/colours.c colours/rainbow.c colours/shifting.c
 SOURCE += utils/ft_strtolower.c utils/ft_atof.c
+SOURCE += variables/initvals.c variables/stdvals.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
