@@ -6,13 +6,12 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 14:42:18 by eweiberl          #+#    #+#              #
-#    Updated: 2023/07/11 17:15:19 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/07/11 18:31:18 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-USER = eweiberl
 MLX = ./mlx/build/libmlx42.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
