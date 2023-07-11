@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 09:21:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 15:28:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:39:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,6 @@ double		ft_atof(const char *str);
 
 void		init_vals(t_fractol *fractol, int argc, char *argv[]);
 void		user_vals(t_fractol *fractol, int argc, char *argv[]);
-void		standart_vals(t_fractol *fractol, int argc, char *argv[]);
+void		standart_vals(t_fractol *fractol);
 
 #endif

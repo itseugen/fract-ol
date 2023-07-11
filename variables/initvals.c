@@ -6,15 +6,15 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:47:47 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 15:31:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:42:10 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static void	user_colours(t_fractol *fractol, int argc, char *str);
-static void	fractal_set(t_fractol *fractol, int argc, char *str);
-static void	numbers(t_fractol *fractol, int argc, char *str);
+static void	user_colours(t_fractol *fractol, char *str);
+static void	fractal_set(t_fractol *fractol, char *str);
+static void	numbers(t_fractol *fractol, char *str);
 
 /// @brief Initialize all values to standart
 /// @param fractol 
@@ -42,7 +42,7 @@ void	init_vals(t_fractol *fractol, int argc, char *argv[])
 	fractol->params.zoomin = 0;
 	fractol->params.zoomout = 0;
 	user_vals(fractol, argc, argv);
-	standart_vals(fractol, argc, argv);
+	standart_vals(fractol);
 }
 
 /// @brief Change the values to user preference
@@ -57,16 +57,16 @@ void	user_vals(t_fractol *fractol, int argc, char *argv[])
 	while (i < argc)
 	{
 		if (ft_strncmp(ft_strtolower(argv[i]), "iter:", 5) == 0)
-			numbers(fractol, argc, argv[i]);
+			numbers(fractol, argv[i]);
 		else if ((ft_strncmp(ft_strtolower(argv[i]), "rainbow", 7) == 0)
 			|| (ft_strncmp(ft_strtolower(argv[i]), "shift", 5) == 0)
 			|| (ft_strncmp(ft_strtolower(argv[i]), "tuvalu", 6) == 0)
 			|| (ft_strncmp(ft_strtolower(argv[i]), "india", 5) == 0))
-			user_colours(fractol, argc, argv[i]);
+			user_colours(fractol, argv[i]);
 		else if ((ft_strncmp(ft_strtolower(argv[i]), "julia", 5) == 0)
 			|| (ft_strncmp(ft_strtolower(argv[i]), "mandelbrot", 10) == 0)
 			|| (ft_strncmp(ft_strtolower(argv[i]), "burning_ship", 12) == 0))
-			fractal_set(fractol, argc, argv[i]);
+			fractal_set(fractol, argv[i]);
 		else if (ft_strncmp(ft_strtolower(argv[i]), "creal:", 6) == 0)
 			fractol->params.creal = ft_atof(argv[i] + 6);
 		else if (ft_strncmp(ft_strtolower(argv[i]), "cimg:", 5) == 0)
@@ -77,7 +77,7 @@ void	user_vals(t_fractol *fractol, int argc, char *argv[])
 	}
 }
 
-static void	user_colours(t_fractol *fractol, int argc, char *str)
+static void	user_colours(t_fractol *fractol, char *str)
 {
 	if (fractol->params.colour != NO_INIT)
 		manual();
@@ -91,7 +91,7 @@ static void	user_colours(t_fractol *fractol, int argc, char *str)
 		fractol->params.colour = INDIA;
 }
 
-static void	fractal_set(t_fractol *fractol, int argc, char *str)
+static void	fractal_set(t_fractol *fractol, char *str)
 {
 	if (fractol->params.set != NO_INIT)
 		manual();
@@ -103,7 +103,7 @@ static void	fractal_set(t_fractol *fractol, int argc, char *str)
 		fractol->params.set = BURNING_SHIP;
 }
 
-static void	numbers(t_fractol *fractol, int argc, char *str)
+static void	numbers(t_fractol *fractol, char *str)
 {
 	if (ft_strncmp(ft_strtolower(str), "iter:", 5) == 0)
 	{

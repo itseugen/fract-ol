@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:34:05 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 14:50:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:45:29 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	close_window(void *param);
 static int	keys(int keycode, void *param);
 static void	zoomdetec(double xdelta, double ydelta, void *param);
-static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y);
+static void	zoom_on_cursor(t_params *params, int x, int y);
 
 /// @brief handles input
 /// @param window gets the window variables to handle inputs
@@ -56,7 +56,6 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	t_window	*window;
 	int32_t		x;
 	int32_t		y;
-	double		zoomdif;
 
 	window = &((t_fractol *)param)->window;
 	params = &((t_fractol *)param)->params;
@@ -77,14 +76,13 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 	double test2;
 
 	test2 = pow(1.05, params->zoomin) * pow(0.95, params->zoomout);
-	
 	params->xmin = -2 / test2;
 	params->xmax = 2 / test2;
 	params->ymin = -2 / test2;
 	params->ymax = 2 / test2;
 	mlx_get_mouse_pos(window->mlx, &x, &y);
 	if (x >= 0 && y >= 0 && x <= WIDTH && y <= HEIGHT && params->zo_mouse == 0)
-		zoom_on_cursor(params, window, x, y);
+		zoom_on_cursor(params, x, y);
 	printf("Current Zoom value: %LF\n", params->zoom);
 	printf("Mouse Position: (%d, %d)\n", x, y);
 	printf("xmin: %LF,\nxmax: %LF\nymin: %LF\n ymax:%LF\n", params->xmin, params->xmax, params->ymin, params->ymax);
@@ -94,7 +92,7 @@ static void	zoomdetec(double xdelta, double ydelta, void *param)
 void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 */
 
-static void	zoom_on_cursor(t_params *params, t_window *window, int x, int y)
+static void	zoom_on_cursor(t_params *params, int x, int y)
 {
 	long double	xrange;
 	long double	xmovepp;

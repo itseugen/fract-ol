@@ -6,13 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:27:31 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/07/11 15:31:06 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:39:51 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-void	standart_vals(t_fractol *fractol, int argc, char *argv[])
+void	standart_vals(t_fractol *fractol)
 {
 	if (fractol->params.colour == NO_INIT)
 		fractol->params.colour = STANDART;
