@@ -49,7 +49,10 @@ make
 ```
 ---
 ## 📷 Pictures
-
+![screenshot](/screenshots/mandelbrot1.png?raw=true)
+![screenshot](/screenshots/burning_ship1.png?raw=true)
+![screenshot](/screenshots/julia1.png?raw=true)
+![screenshot](/screenshots/julia2.png?raw=true)
 ---
 
 <sub><sup>This project is part of my studies at 42 Heilbronn</sup></sub>
